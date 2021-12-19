@@ -1,0 +1,110 @@
+/*CSS PROPIO QUE CAMBIA EL DISEÑO PARA DISPOSITIVOS PEQUEÑOS*/
+form div{font: 100%/1.5 Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+font-family: "Open Sans",sans-serif;
+font-weight: 400;
+-webkit-font-smoothing: antialiased;
+text-align: left;
+color: #333;
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font-size: 100%;
+background: transparent;
+min-width: 0;
+    
+}
+form div label{
+font: 100%/1.5 Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+font-family: "Open Sans",sans-serif;
+-webkit-font-smoothing: antialiased;
+color: #333;
+outline: 0;
+min-width: 0;
+font-style: inherit;
+display: block;
+font-size: 1em;
+line-height: 1.5em;
+position: relative;
+margin: 0 0 16px 0;
+cursor: pointer;
+transition: all .3s ease;
+border: 1px solid #9e9e9e;
+border-radius: 8px;
+background: #fafafa;
+padding: 16px 8px 16px 48px;
+font-weight: normal;
+float: none;
+box-sizing: border-box;
+width: auto;
+margin-top: 0;
+max-width: 464px;
+text-align: left;
+}
+.titulo{font: 100%/1.5 Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+font-family: "Open Sans",sans-serif;
+-webkit-font-smoothing: antialiased;
+text-align: left;
+font-style: inherit;
+color: #333;
+font-size: 1em;
+font-weight: 400;
+line-height: 1.5em;
+display: block;
+margin: 16px 0;
+padding: 0;
+}
+form strong{
+font: 100%/1.5 Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+-webkit-font-smoothing: antialiased;
+font-style: inherit;
+display: block;
+float: left;
+color: white;
+text-align: center;
+background: #212121;
+border-radius: 50%;
+height: 2em;
+width: 2em;
+padding: 0;
+margin: -0.25em .5em 0 0;
+line-height: 2em;
+font-family: inherit !important;
+font-size: 1em;
+font-weight: 700;}
+
+h1{font: Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+-webkit-font-smoothing: antialiased;
+font-style: inherit;
+color: white;
+text-align: center;
+background: #212121;
+border-radius: 8px;
+padding: 20px;
+font-weight: 700;
+width: 30%;
+position: absolute;
+right: 35%;}
+
+
+p{font-size: 20px;}
+#principal{padding-left: 2%;position: absolute; top: 25%; width: 70%;}
+#cuadro{width: 19.9%; right: 2%; float: right; position: fixed;}
+@media (max-width: 1400px){
+    #cuadro{width: 50%; float: left;left: 10%; position: relative;}
+    #principal{float: top; left: 3%;position: relative;top: 35%; width: 90%;}
+    h1{font: Source Sans Pro,Arial,Helvetica Neue,Helvetica,"sans-serif";
+-webkit-font-smoothing: antialiased;
+font-style: inherit;
+color: white;
+text-align: center;
+background: #212121;
+border-radius: 8px;
+padding: 20px;
+font-weight: 500;
+width: 90%;
+float: left;
+position: relative;
+left: 2%;}
+   
+}

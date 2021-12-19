@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="newcss.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-3.5.1.js" type="text/javascript"></script>
+    <script>
+        /*EL SCRIPT HACE UN CONTEO DE LAS PREGUNTAS CONTESTADAS INCLUSO SI SE CAMBIA LA RESPUESTA
+         * AL CORREGIR DA EL NUMERO DE PREGUNTAS CORRECTAS, INCORRECTAS Y NO CONTESTADAS ADEMAS DE LA CALIFICACION CON DISTINTO COLOR DEPENDIENDO DE SI ESTA APROBADO O NO*/
+        var correcta=0;
+        var incorrecta=0;
+        var vacia=0;
+        var puntuacion=0;
+        var cont=1;
+        var contestadas=[];
+        var clicks=0;
+        var contestada=true;
+        $(function(){$("#corregir").click(function(){$("form").each(function(){$("label").each(function(){
+                        if($(this).find("input").is(":checked")){if($(this).find("input").val()=== "incorrecta"){$(this).css("background-color", "#F52137");incorrecta+=1;}else{$(this).css("background-color", "#8BD61A");correcta+=1;}}
+                        else{ if($(this).find("input").val()==="correcta"){$(this).css("background-color", "#909296");}}});});
+            correcta=correcta/20;
+            incorrecta=incorrecta/20;
+            vacio=20-correcta-incorrecta;
+            puntuacion=((0.5*correcta)+((-0.16)*incorrecta)+((-0.05)*vacio));
+            if(puntuacion<0){puntuacion=0;}
+            if(puntuacion<5){$("#cal").css("color","#F52137");}
+            else{$("#cal").css("color","#8BD61A");}
+            $("#correctas").text(correcta);
+            $("#incorrectas").text(incorrecta);
+            $("#vacias").text(vacio);
+            $("#cal").text(puntuacion.toFixed(2));});});
+       
+       $(function(){$("input").on("input",function(){
+               for(var i=0;i<contestadas.length;i++){
+                   if(contestadas[i]!==$(this).attr("name")){contestada=false;}
+                   else{contestada=true;}}
+               if(contestada===false){cont+=1;}
+               contestada=true;
+               contestadas[clicks]=$(this).attr("name");
+               clicks+=1;
+               $("#conteo").text(cont);});});
+            
+            
+           
+       
+           
+       
+    </script>
+    </head>
+    <body style="background-color:  whitesmoke" oninput="recargar()">
+        <header style="padding-bottom: 10%; background-color: whitesmoke;height: 19.99%; align-content: center;text-align: center;">
+            <div><h1>TEST JAVASCRIPT</h1></div>
+        </header>
+        <main style="height: 79.99%">
+            <div id="principal">
+            <h3>Todo lo que debes saber acerca del uso de variables en Javascript</h3>
+            <form ><strong>1</strong>
+                <span class="titulo">¿Cuál es la sentencia correcta para definir e inicializar una variable "x" con un valor de 53?</span>
+                <div><label><input type="radio" name="radio1" value="incorrecta"><span>Dim x = 53;</span></label></div><br>
+                <div><label><input type="radio" name="radio1" value="correcta"><span>var x= 53;</span></label></div><br>
+                <div><label><input type="radio" name="radio1" value="incorrecta"><span>let x = 53;</span></label></div><br>
+                <div><label><input type="radio" name="radio1" value="incorrecta"><span>initial x = 53;</span></label></div><br>
+            </form>
+            <form ><strong>2</strong>
+                <span class="titulo">Si una variable no se inicializa esta tomará el valor de:</span>
+                <div><label><input type="radio" name="radio2" value="incorrecta"><span>null</span></label></div><br>
+                <div><label><input type="radio" name="radio2" value="incorrecta"><span>cero</span></label></div><br>
+                <div><label><input type="radio" name="radio2" value="incorrecta"><span>false</span></label></div><br>
+                <div><label><input type="radio" name="radio2" value="correcta"><span>undefined</span></label></div><br>
+            </form>
+            <form ><strong>3</strong>
+                <span class="titulo">El nombre de una variable debe comenzar por:</span>
+                <div><label><input type="radio" name="radio3" value="incorrecta"><span>Letra, guion bajo ( _ ) o signo de número ( #)</span></label></div><br>
+                <div><label><input type="radio" name="radio3" value="correcta"><span>Letra, guion bajo ( _ ) o signo de Dolar ( $)</span></label></div><br>
+                <div><label><input type="radio" name="radio3" value="incorrecta"><span>Letra, guion bajo ( _ )</span></label></div><br>
+                <div><label><input type="radio" name="radio3" value="incorrecta"><span>Letra, guion bajo ( _ ) o ampersand ( &)</span></label></div><br>
+            </form>
+            <h3>Selecciona el valor correcto que devuelve cada expresión JavaScript.</h3>
+            <form ><strong>4</strong>
+                <span class="titulo">"" && "3"</span>
+                <div><label><input type="radio" name="radio4" value="correcta"><span>""</span></label></div><br>
+                <div><label><input type="radio" name="radio4" value="incorrecta"><span>"3"</span></label></div><br>
+                <div><label><input type="radio" name="radio4" value="incorrecta"><span>false</span></label></div><br>
+                <div><label><input type="radio" name="radio4" value="incorrecta"><span>true</span></label></div><br>
+            </form>
+            <form ><strong>5</strong>
+                <span class="titulo">6 && 8</span>
+                <div><label><input type="radio" name="radio5" value="correcta"><span>6</span></label></div><br>
+                <div><label><input type="radio" name="radio5" value="incorrecta"><span>8</span></label></div><br>
+                <div><label><input type="radio" name="radio5" value="incorrecta"><span>false</span></label></div><br>
+                <div><label><input type="radio" name="radio5" value="incorrecta"><span>true</span></label></div><br>
+            </form>
+            <form ><strong>6</strong>
+                <span class="titulo">false || 5</span>
+                <div><label><input type="radio" name="radio6" value="incorrecta"><span>true</span></label></div><br>
+                <div><label><input type="radio" name="radio6" value="incorrecta"><span>false</span></label></div><br>
+                <div><label><input type="radio" name="radio6" value="incorrecta"><span>3</span></label></div><br>
+                <div><label><input type="radio" name="radio6" value="correcta"><span>5</span></label></div><br>
+            </form>
+            <form ><strong>7</strong>
+                <span class="titulo">"Hola" || "Mundo"</span>
+                <div><label><input type="radio" name="radio7" value="incorrecta"><span>"Hola Mundo"</span></label></div><br>
+                <div><label><input type="radio" name="radio7" value="correcta"><span>"Hola"</span></label></div><br>
+                <div><label><input type="radio" name="radio7" value="incorrecta"><span>"Mundo"</span></label></div><br>
+                <div><label><input type="radio" name="radio7" value="incorrecta"><span>true</span></label></div><br>
+            </form>
+            <form ><strong>8</strong>
+                <span class="titulo">!!null</span>
+                <div><label><input type="radio" name="radio8" value="correcta"><span>false</span></label></div><br>
+                <div><label><input type="radio" name="radio8" value="incorrecta"><span>true</span></label></div><br>
+                <div><label><input type="radio" name="radio8" value="incorrecta"><span>Error</span></label></div><br>
+                <div><label><input type="radio" name="radio8" value="incorrecta"><span>undefined</span></label></div><br>
+            </form>
+            <h3>Funciones y métodos para el tratamiento de los números en javascript.</h3>
+            <form ><strong>9</strong>
+                <span class="titulo">¿Qué valor devuelve la siguiente expresión: Math.floor(7.3) ?</span>
+                <div><label><input type="radio" name="radio9" value="incorrecta"><span>7.5</span></label></div><br>
+                <div><label><input type="radio" name="radio9" value="correcta"><span>7</span></label></div><br>
+                <div><label><input type="radio" name="radio9" value="incorrecta"><span>8</span></label></div><br>
+                <div><label><input type="radio" name="radio9" value="incorrecta"><span>0.5</span></label></div><br>
+            </form>
+            <form ><strong>10</strong>
+                <span class="titulo">¿Qué valor devuelve la siguiente expresión: Math.ceil(7.3) ?</span>
+                <div><label><input type="radio" name="radio10" value="incorrecta"><span>7</span></label></div><br>
+                <div><label><input type="radio" name="radio10" value="incorrecta"><span>7.3</span></label></div><br>
+                <div><label><input type="radio" name="radio10" value="incorrecta"><span>7.5</span></label></div><br>
+                <div><label><input type="radio" name="radio10" value="correcta"><span>8</span></label></div><br>
+            </form>
+            <form ><strong>11</strong>
+                <span class="titulo">¿Qué valor devuelve la siguiente expresión: Math.round(7.3) ?</span>
+                <div><label><input type="radio" name="radio11" value="correcta"><span>7</span></label></div><br>
+                <div><label><input type="radio" name="radio11" value="incorrecta"><span>7.3</span></label></div><br>
+                <div><label><input type="radio" name="radio11" value="incorrecta"><span>7.5</span></label></div><br>
+                <div><label><input type="radio" name="radio11" value="incorrecta"><span>8</span></label></div><br>
+            </form>
+            <form ><strong>12</strong>
+                <span class="titulo">¿Qué valor devuelve la siguiente expresión: 10/0 ?</span>
+                <div><label><input type="radio" name="radio12" value="incorrecta"><span>NaN</span></label></div><br>
+                <div><label><input type="radio" name="radio12" value="incorrecta"><span>10</span></label></div><br>
+                <div><label><input type="radio" name="radio12" value="correcta"><span>Infinity</span></label></div><br>
+                <div><label><input type="radio" name="radio12" value="incorrecta"><span>false</span></label></div><br>
+            </form>
+            <h3>Funciones y métodos para el tratamiento de strings en JavaScript. Contestar las preguntas teniendo en cuenta el siguiente código:var texto = "EXAMEN DE JAVASCRIPT";</h3>
+            <form ><strong>13</strong>
+                <span class="titulo">texto.length</span>
+                <div><label><input type="radio" name="radio13" value="incorrecta"><span>18</span></label></div><br>
+                <div><label><input type="radio" name="radio13" value="incorrecta"><span>19</span></label></div><br>
+                <div><label><input type="radio" name="radio13" value="correcta"><span>20</span></label></div><br>
+                <div><label><input type="radio" name="radio13" value="incorrecta"><span>21</span></label></div><br>
+            </form>
+            <form ><strong>14</strong>
+                <span class="titulo">texto[3]</span>
+                <div><label><input type="radio" name="radio14" value="incorrecta"><span>A</span></label></div><br>
+                <div><label><input type="radio" name="radio14" value="correcta"><span>M</span></label></div><br>
+                <div><label><input type="radio" name="radio14" value="incorrecta"><span>E</span></label></div><br>
+                <div><label><input type="radio" name="radio14" value="incorrecta"><span>N</span></label></div><br>
+            </form>
+            <form ><strong>15</strong>
+                <span class="titulo">texto.indexOf("JAVASCRIPT")</span>
+                <div><label><input type="radio" name="radio15" value="incorrecta"><span>9</span></label></div><br>
+                <div><label><input type="radio" name="radio15" value="correcta"><span>10</span></label></div><br>
+                <div><label><input type="radio" name="radio15" value="incorrecta"><span>11</span></label></div><br>
+                <div><label><input type="radio" name="radio15" value="incorrecta"><span>12</span></label></div><br>
+            </form>
+            <form ><strong>16</strong>
+                <span class="titulo">texto.toLowerCase()</span>
+                <div><label><input type="radio" name="radio16" value="correcta"><span>examen de javascript</span></label></div><br>
+                <div><label><input type="radio" name="radio16" value="incorrecta"><span>Examen de Javascript</span></label></div><br>
+                <div><label><input type="radio" name="radio16" value="incorrecta"><span>EXAMEN DE JAVASCRIPT</span></label></div><br>
+                <div><label><input type="radio" name="radio16" value="incorrecta"><span>Ninguna de las Anteriores</span></label></div><br>
+            </form>
+            <h3>Preguntas básicas para una evaluación del lenguaje de programación jQuery.</h3>
+            <form ><strong>17</strong>
+                <span class="titulo">¿Que es Jquery?</span>
+                <div><label><input type="radio" name="radio17" value="incorrecta"><span>Un editor de texto.</span></label></div><br>
+                <div><label><input type="radio" name="radio17" value="correcta"><span>Es una biblioteca de Javascript que simplifica la interacción con documentos HTML.</span></label></div><br>
+                <div><label><input type="radio" name="radio17" value="incorrecta"><span>Es un software de cálculos.</span></label></div><br>
+                <div><label><input type="radio" name="radio17" value="incorrecta"><span>Es un software de código abierto para manipular elementos del CORE.</span></label></div><br>
+            </form>
+            <form ><strong>18</strong>
+                <span class="titulo"> De los selectores especiales, ¿que selector selecciona un elemento por su indice?</span>
+                <div><label><input type="radio" name="radio18" value="incorrecta"><span>:gt(5)</span></label></div><br>
+                <div><label><input type="radio" name="radio18" value="correcta"><span>:eq(5)</span></label></div><br>
+                <div><label><input type="radio" name="radio18" value="incorrecta"><span>:lt(10)</span></label></div><br>
+                <div><label><input type="radio" name="radio18" value="incorrecta"><span>:visible, :hidden</span></label></div><br>
+            </form>
+            <form ><strong>19</strong>
+                <span class="titulo">¿Selecciona elementos en base al atributo colocando primero el atributo y luego el valor?</span>
+                <div><label><input type="radio" name="radio19" value="incorrecta"><span>Selector universal.</span></label></div><br>
+                <div><label><input type="radio" name="radio19" value="incorrecta"><span>Selector por elementos.</span></label></div><br>
+                <div><label><input type="radio" name="radio19" value="incorrecta"><span>Selector por clase.</span></label></div><br>
+                <div><label><input type="radio" name="radio19" value="correcta"><span>Selector por atributo.</span></label></div><br>
+            </form>
+            <form ><strong>20</strong>
+                <span class="titulo">¿Cual es el selector que al igual que en css se selecciona varios elementos?</span>
+                <div><label><input type="radio" name="radio20" value="incorrecta"><span>Selector universal.</span></label></div><br>
+                <div><label><input type="radio" name="radio20" value="correcta"><span>Selector multiple.</span></label></div><br>
+                <div><label><input type="radio" name="radio20" value="incorrecta"><span>Selector por clase.</span></label></div><br>
+                <div><label><input type="radio" name="radio20" value="incorrecta"><span>Selector por atributo.</span></label></div><br>
+            </form>
+            </div>
+            <div id="cuadro">
+                <h2 style="width: 50%;position: relative; float: left; padding-right: 55px;">CALIFICACION:</h2><h2 id="cal"></h2><br>
+                <p style="width: 50%;position: relative; float: left; padding-right: 55px;">Correctas:</p><p id="correctas" style=" position: relative; float: left;width: 5%;"></p>
+                <p style="width: 50%;position: relative; float: left; padding-right: 55px;">Incorrectas:</p><p id="incorrectas" style=" position: relative; float: left;width: 5%;"></p>
+                <p style="width: 50%;position: relative; float: left; padding-right: 55px;">No contestadas:</p><p id="vacias" style=" position: relative; float: left;width: 5%;"></p>
+                <p style="width: 25%;position: relative; float: left; padding-right: 55px;">Preguntas contestadas:</p><p id="conteo" style="padding-top: 10px; position: relative; float: left;width: 5%;">0</p><p style="padding-top: 10px;width: 5%;position: relative; float: left;" id="preguntas">/20</p>
+                <div style="width: 100%; position: relative; float: left; "><button id="corregir" style="cursor: pointer;font-size: 15px; height: 30px;border-radius: 8px; color: white;background-color: #F52137; border-color: white;float: left;" >CORREGIR</button></div>
+            </div>    
+          
+        </main>    
+  
+    </body>
+</html>
